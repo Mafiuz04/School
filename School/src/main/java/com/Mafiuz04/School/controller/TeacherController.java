@@ -1,7 +1,8 @@
 package com.Mafiuz04.School.controller;
 
-import com.Mafiuz04.School.entity.Student;
-import com.Mafiuz04.School.service.StudentService;
+
+import com.Mafiuz04.School.entity.Teacher;
+import com.Mafiuz04.School.service.TeacherService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -12,42 +13,42 @@ import java.util.List;
 @AllArgsConstructor
 @RestController
 public class TeacherController {
-    StudentService studentService;
+    TeacherService teacherService;
 
     @PostMapping
-    public Student addStudent(@RequestBody Student student) {
-        return studentService.addStudent(student);
+    public Teacher addTeacher(@RequestBody Teacher teacher) {
+        return teacherService.addTeacher(teacher);
     }
 
     @GetMapping("/{id}")
-    public Student getStudent(@PathVariable int id) {
-        return studentService.getStudent(id);
+    public Teacher getTeacher(@PathVariable int id) {
+        return teacherService.getTeacher(id);
     }
 
     @GetMapping
-    public List<Student> getStudents() {
-        return studentService.getStudents();
+    public List<Teacher> getTeachers() {
+        return teacherService.getTeachers();
     }
 
-    @GetMapping("/{lastName}")
-    public List<Student> getStudentsByLastName(@PathVariable String lastName) {
-        return studentService.getStudentsByLastName(lastName);
+    @GetMapping("/{sex}")
+    public List<Teacher> getTeacherBySex(@PathVariable String sex) {
+        return teacherService.getTeacherBySex(sex);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteStudent(@PathVariable int id) {
-        studentService.deleteStudent(id);
+    public void deleteTeacher(@PathVariable int id) {
+        teacherService.deleteTeacher(id);
     }
 
     @PutMapping("/{id}")
-    public Student editStudent(@PathVariable int id, @RequestBody Student student) {
-        return studentService.editStudent(id, student);
+    public Teacher editTeacher(@PathVariable int id, @RequestBody Teacher teacher) {
+        return teacherService.editTeacher(id, teacher);
     }
 
     @PatchMapping("/{id}")
-    public Student changeStudentPhoneNumber(@PathVariable int id, @RequestBody String newPhoneNumber) {
-        studentService.changeStudentPhoneNumber(id, newPhoneNumber);
-        return studentService.getStudent(id);
+    public Teacher chane(@PathVariable int id, @RequestBody String newPhoneNumber) {
+        teacherService.changeTeacherPhoneNumber(id, newPhoneNumber);
+        return teacherService.getTeacher(id);
     }
 }
