@@ -1,6 +1,5 @@
 package com.Mafiuz04.School.repository;
 
-import com.Mafiuz04.School.entity.Student;
 import com.Mafiuz04.School.entity.Teacher;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -24,7 +23,7 @@ public class TeacherRepository {
     }
 
     public void deleteTeacher(int id) {
-        teachers.removeIf(student -> student.getId() == id);
+        teachers.removeIf(teacher -> teacher.getId() == id);
     }
 
     public void editTeacher(Teacher teacher, Teacher editedTeacher) {
@@ -36,17 +35,18 @@ public class TeacherRepository {
         teacher.setDateOfBirth(editedTeacher.getDateOfBirth());
     }
 
-    public void changeNumber(Teacher teacher, String newPhoneNumber) {
+    public Teacher changeNumber(Teacher teacher, String newPhoneNumber) {
         teacher.setPhoneNumber(newPhoneNumber);
+        return teacher;
     }
 
     public List<Teacher> getTeachers() {
         return new ArrayList<>(teachers);
     }
 
-    public List<Teacher> getByLastName(String lastName) {
+    public List<Teacher> getBySex(String sex) {
         return teachers.stream()
-                .filter(teacher -> teacher.getLastName().equals(lastName))
+                .filter(teacher -> teacher.getSex().equals(sex))
                 .toList();
     }
 }
