@@ -12,21 +12,23 @@ import java.util.*;
 public class StudentRepository {
     private final List<Student> students;
 
-    public Student add(Student student) {
+    public void add(Student student) {
         student.setId(students.stream()
                 .mapToLong(Student::getId)
-                .max().orElse(1) + 1);
+                .max().orElse(0) + 1);
         students.add(student);
-        return student;
+    }
+    public void cleanList(){
+        students.clear();
     }
 
-    public Optional<Student> getbyId(Long id) {
+    public Optional<Student> getById(Long id) {
         return students.stream()
                 .filter(student -> student.getId().equals(id))
                 .findFirst();
     }
 
-    public void deletById(Long id) {
+    public void deleteById(Long id) {
         students.removeIf(student -> student.getId().equals(id));
     }
 

@@ -19,18 +19,21 @@ public class StudentService {
         studentRepository.add(student);
         return student;
     }
+    public void cleanStudentList(){
+        studentRepository.cleanList();
+    }
 
     public Student getStudent(Long id) {
-        return studentRepository.getbyId(id)
+        return studentRepository.getById(id)
                 .orElseThrow(() -> new NoSuchElementException("There is no student with given ID"));
     }
 
     public void deleteStudent(Long id) {
-        studentRepository.deletById(id);
+        studentRepository.deleteById(id);
     }
 
     public Student editStudent(Long id, Student newStudent) {
-        Student student = studentRepository.getbyId(id)
+        Student student = studentRepository.getById(id)
                 .orElseThrow(() -> new NoSuchElementException("There is no student with given ID"));
         studentRepository.editById(student, newStudent);
         return student;
@@ -44,9 +47,5 @@ public class StudentService {
         return Optional.ofNullable(lastName).isPresent() ? studentRepository.getByLastName(lastName)
                 : studentRepository.getStudents();
 
-    }
-
-    public List<Student> getStudentsByLastName(String lastName) {
-        return studentRepository.getByLastName(lastName);
     }
 }

@@ -1,5 +1,6 @@
 package com.Mafiuz04.School.repository;
 
+import com.Mafiuz04.School.entity.ChangePhoneNumber;
 import com.Mafiuz04.School.entity.Teacher;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -16,7 +17,7 @@ public class TeacherRepository {
         teacher.setId(teachers.stream()
                 .mapToLong(Teacher::getId)
                 .max()
-                .orElse(1) + 1);
+                .orElse(0) + 1);
         teachers.add(teacher);
     }
 
@@ -39,8 +40,8 @@ public class TeacherRepository {
         teacher.setDateOfBirth(editedTeacher.getDateOfBirth());
     }
 
-    public Teacher changeNumber(Teacher teacher, String newPhoneNumber) {
-        teacher.setPhoneNumber(newPhoneNumber);
+    public Teacher changeNumber(Teacher teacher, ChangePhoneNumber newPhoneNumber) {
+        teacher.setPhoneNumber(newPhoneNumber.getPhoneNumber());
         return teacher;
     }
 

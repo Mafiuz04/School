@@ -32,6 +32,12 @@ public class StudentController {
     public void deleteStudent(@PathVariable Long id){
         studentService.deleteStudent(id);
     }
+    @DeleteMapping
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void clearStudentList(){
+        studentService.cleanStudentList();
+    }
+
     @PutMapping("/{id}")
     public Student editStudent(@PathVariable Long id, @RequestBody Student student){
         return studentService.editStudent(id, student);

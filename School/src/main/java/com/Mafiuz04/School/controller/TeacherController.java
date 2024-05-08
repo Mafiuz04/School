@@ -1,6 +1,7 @@
 package com.Mafiuz04.School.controller;
 
 
+import com.Mafiuz04.School.entity.ChangePhoneNumber;
 import com.Mafiuz04.School.entity.Teacher;
 import com.Mafiuz04.School.service.TeacherService;
 import lombok.AllArgsConstructor;
@@ -26,13 +27,8 @@ public class TeacherController {
     }
 
     @GetMapping
-    public List<Teacher> getTeachers() {
-        return teacherService.getTeachers();
-    }
-
-    @GetMapping("/{sex}")
-    public List<Teacher> getTeacherBySex(@PathVariable String sex) {
-        return teacherService.getTeacherBySex(sex);
+    public List<Teacher> getTeachers(@RequestParam(required = false) String sex) {
+        return teacherService.getTeachers(sex);
     }
 
     @DeleteMapping("/{id}")
@@ -47,7 +43,7 @@ public class TeacherController {
     }
 
     @PatchMapping("/{id}")
-    public Teacher chane(@PathVariable Long id, @RequestBody String newPhoneNumber) {
+    public Teacher chane(@PathVariable Long id, @RequestBody ChangePhoneNumber newPhoneNumber) {
         teacherService.changeTeacherPhoneNumber(id, newPhoneNumber);
         return teacherService.getTeacher(id);
     }
