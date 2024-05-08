@@ -1,5 +1,6 @@
 package com.Mafiuz04.School.repository;
 
+import com.Mafiuz04.School.entity.ChangePhoneNumber;
 import com.Mafiuz04.School.entity.Student;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -38,8 +39,8 @@ public class StudentRepository {
         student.setDateOfBirth(editedStudent.getDateOfBirth());
     }
 
-    public Student changeNumber(Student student, String newPhoneNumber) {
-        student.setPhoneNumber(newPhoneNumber);
+    public Student changeNumber(Student student, ChangePhoneNumber newPhoneNumber) {
+        student.setPhoneNumber(newPhoneNumber.getPhoneNumber());
         return student;
     }
 

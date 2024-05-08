@@ -1,5 +1,6 @@
 package com.Mafiuz04.School.controller;
 
+import com.Mafiuz04.School.entity.ChangePhoneNumber;
 import com.Mafiuz04.School.entity.Student;
 import com.Mafiuz04.School.service.StudentService;
 import lombok.AllArgsConstructor;
@@ -23,12 +24,8 @@ public class StudentController {
         return studentService.getStudent(id);
     }
     @GetMapping
-    public List<Student> getStudents(){
-        return studentService.getStudents();
-    }
-    @GetMapping("/{lastName}")
-    public List<Student> getStudentsByLastName(@PathVariable String lastName){
-        return studentService.getStudentsByLastName(lastName);
+    public List<Student> getStudents(@RequestParam(required = false) String lastName){
+        return studentService.getStudents(lastName);
     }
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -41,7 +38,7 @@ public class StudentController {
     }
 
     @PatchMapping("/{id}")
-    public Student changeStudentPhoneNumber(@PathVariable Long id, @RequestBody String newPhoneNumber){
+    public Student changeStudentPhoneNumber(@PathVariable Long id, @RequestBody ChangePhoneNumber newPhoneNumber){
         studentService.changeStudentPhoneNumber(id,newPhoneNumber);
         return studentService.getStudent(id);
     }
