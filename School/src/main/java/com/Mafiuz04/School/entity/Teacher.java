@@ -10,7 +10,7 @@ import java.time.LocalDate;
 @ToString
 @EqualsAndHashCode
 public class Teacher {
-    private int id;
+    private Long id;
     private String phoneNumber;
     private String firstName;
     private String lastName;

@@ -21,7 +21,7 @@ public class TeacherController {
     }
 
     @GetMapping("/{id}")
-    public Teacher getTeacher(@PathVariable int id) {
+    public Teacher getTeacher(@PathVariable Long id) {
         return teacherService.getTeacher(id);
     }
 
@@ -37,17 +37,17 @@ public class TeacherController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteTeacher(@PathVariable int id) {
+    public void deleteTeacher(@PathVariable Long id) {
         teacherService.deleteTeacher(id);
     }
 
     @PutMapping("/{id}")
-    public Teacher editTeacher(@PathVariable int id, @RequestBody Teacher teacher) {
+    public Teacher editTeacher(@PathVariable Long id, @RequestBody Teacher teacher) {
         return teacherService.editTeacher(id, teacher);
     }
 
     @PatchMapping("/{id}")
-    public Teacher chane(@PathVariable int id, @RequestBody String newPhoneNumber) {
+    public Teacher chane(@PathVariable Long id, @RequestBody String newPhoneNumber) {
         teacherService.changeTeacherPhoneNumber(id, newPhoneNumber);
         return teacherService.getTeacher(id);
     }

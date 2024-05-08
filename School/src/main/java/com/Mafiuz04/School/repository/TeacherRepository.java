@@ -13,17 +13,21 @@ public class TeacherRepository {
     private final List<Teacher> teachers;
 
     public void addTeacher(Teacher teacher) {
+        teacher.setId(teachers.stream()
+                .mapToLong(Teacher::getId)
+                .max()
+                .orElse(1) + 1);
         teachers.add(teacher);
     }
 
-    public Optional<Teacher> getTeacher(int id) {
+    public Optional<Teacher> getTeacher(Long id) {
         return teachers.stream()
-                .filter(teacher -> teacher.getId() == id)
+                .filter(teacher -> teacher.getId().equals(id))
                 .findFirst();
     }
 
-    public void deleteTeacher(int id) {
-        teachers.removeIf(teacher -> teacher.getId() == id);
+    public void deleteTeacher(Long id) {
+        teachers.removeIf(teacher -> teacher.getId().equals(id));
     }
 
     public void editTeacher(Teacher teacher, Teacher editedTeacher) {

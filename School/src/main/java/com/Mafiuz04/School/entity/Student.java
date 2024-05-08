@@ -10,7 +10,7 @@ import java.time.LocalDate;
 @ToString
 @EqualsAndHashCode
 public class Student {
-    private int id;
+    private Long id;// zmiana na Longa!!Bo był int, a nie powinno być typów prostych-> chodzi o to żeby był null.
     private String phoneNumber;
     private String firstName;
     private String lastName;

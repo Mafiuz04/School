@@ -16,20 +16,20 @@ public class TeacherService {
         teacherRepository.addTeacher(teacher);
         return teacher;
     }
-    public Teacher getTeacher(int id){
+    public Teacher getTeacher(Long id){
         return teacherRepository.getTeacher(id)
                 .orElseThrow(()->new NoSuchElementException("There is no student with given ID"));
     }
-    public void deleteTeacher(int id){
+    public void deleteTeacher(Long id){
         teacherRepository.deleteTeacher(id);
     }
-    public Teacher editTeacher(int id, Teacher newTeacher){
+    public Teacher editTeacher(Long id, Teacher newTeacher){
         Teacher teacher = teacherRepository.getTeacher(id)
                 .orElseThrow(() -> new NoSuchElementException("There is no student with given ID"));
         teacherRepository.editTeacher(teacher, newTeacher);
         return teacher;
     }
-    public Teacher changeTeacherPhoneNumber(int id, String newNumber){
+    public Teacher changeTeacherPhoneNumber(Long id, String newNumber){
         return teacherRepository.changeNumber(getTeacher(id),newNumber);
     }
     public List<Teacher> getTeachers(){

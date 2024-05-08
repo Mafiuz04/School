@@ -12,18 +12,21 @@ public class StudentRepository {
     private final List<Student> students;
 
     public Student add(Student student) {
+        student.setId(students.stream()
+                .mapToLong(Student::getId)
+                .max().orElse(1) + 1);
         students.add(student);
         return student;
     }
 
-    public Optional<Student> getbyId(int id) {
+    public Optional<Student> getbyId(Long id) {
         return students.stream()
-                .filter(student -> student.getId() == id)
+                .filter(student -> student.getId().equals(id))
                 .findFirst();
     }
 
-    public void deletById(int id) {
-        students.removeIf(student -> student.getId() == id);
+    public void deletById(Long id) {
+        students.removeIf(student -> student.getId().equals(id));
     }
 
     public void editById(Student student, Student editedStudent) {
