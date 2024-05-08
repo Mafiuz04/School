@@ -4,30 +4,29 @@ import com.Mafiuz04.School.entity.Student;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
+import java.util.*;
+
 @Repository
 @AllArgsConstructor
 public class StudentRepository {
     private final List<Student> students;
 
-    public void addStudent(Student student) {
+    public Student add(Student student) {
         students.add(student);
+        return student;
     }
 
-    public Optional<Student> getStudent(int id) {
+    public Optional<Student> getbyId(int id) {
         return students.stream()
                 .filter(student -> student.getId() == id)
                 .findFirst();
     }
 
-    public void deleteStudent(int id) {
+    public void deletById(int id) {
         students.removeIf(student -> student.getId() == id);
     }
 
-    public void editStudent(Student student, Student editedStudent) {
+    public void editById(Student student, Student editedStudent) {
         student.setPesel(editedStudent.getPesel());
         student.setSex(editedStudent.getSex());
         student.setFirstName(editedStudent.getFirstName());
@@ -36,8 +35,9 @@ public class StudentRepository {
         student.setDateOfBirth(editedStudent.getDateOfBirth());
     }
 
-    public void changeNumber(Student student, String newPhoneNumber) {
+    public Student changeNumber(Student student, String newPhoneNumber) {
         student.setPhoneNumber(newPhoneNumber);
+        return student;
     }
 
     public List<Student> getStudents() {
@@ -46,7 +46,7 @@ public class StudentRepository {
 
     public List<Student> getByLastName(String lastName) {
         return students.stream()
-                .filter(student -> student.getLastName().equals(lastName))
-                .toList();
+                    .filter(student -> student.getLastName().equals(lastName))
+                    .toList();
     }
 }
